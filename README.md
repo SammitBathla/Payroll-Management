@@ -193,9 +193,10 @@ The following test user accounts are available for development and testing:
 
 | Role     | Username   | Password      | Permissions                         |
 | -------- | ---------- | ------------- | ----------------------------------- |
-| Admin    | `admin`    | `admin123`    | Full system access, user management |
-| Operator | `operator` | `operator123` | Payroll creation, batch management  |
-| Approver | `approver` | `approver123` | Batch approval, approval workflow   |
+| Operator | `operator` | `password` | Payroll creation, batch management  |
+| Approver | `approver` | `password` | Batch approval, approval workflow   |
+| Approver 1 | `approver1` | `password` | Batch approval, approval workflow   |
+| Approver 2| `approver2` | `password` | Batch approval, approval workflow   |
 
 **Note:** These are default credentials configured in the database seeding class. Change these credentials in production!
 
