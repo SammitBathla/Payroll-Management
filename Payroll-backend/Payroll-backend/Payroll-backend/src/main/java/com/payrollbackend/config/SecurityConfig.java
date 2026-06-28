@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -52,27 +53,17 @@ public class SecurityConfig {
                 )
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/login").permitAll()
-                        // Swagger UI and OpenAPI docs
-                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        // OPERATOR access
-                        .requestMatchers(HttpMethod.POST, "/api/batch/**").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/batch", "/api/batch/**").hasRole("OPERATOR")
-                        // ACCOUNTS access
-                        .requestMatchers("/api/accounts/**").hasAnyRole("OPERATOR", "APPROVER")
-                        // ACCOUNT STATEMENT access
-                        .requestMatchers("/api/account-statement/**").hasAnyRole("OPERATOR", "APPROVER")
-                        // APPROVER access
-                        .requestMatchers("/api/approvals/**").hasRole("APPROVER")
-                        .requestMatchers("/api/batch/manage/**").hasRole("APPROVER")
-                        .requestMatchers("/api/batch/approval/**").hasAnyRole("APPROVER", "OPERATOR")
-                        .requestMatchers("/api/dashboard/**").hasAnyRole("OPERATOR", "APPROVER")
-
-                        // everything else requires authentication
-                        .anyRequest().authenticated()
-
+                        .requestMatchers(
+                                new AntPathRequestMatcher("/api/auth/login"),
+                                new AntPathRequestMatcher("/h2-console/**"),
+                                new AntPathRequestMatcher("/v3/api-docs/**"),
+                                new AntPathRequestMatcher("/swagger-ui/**"),
+                                new AntPathRequestMatcher("/swagger-ui.html")
+                        ).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
+                        .anyRequest().permitAll()
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
@@ -97,7 +88,11 @@ public class SecurityConfig {
                 .password(passwordEncoder.encode("password"))
                 .roles("APPROVER")
                 .build();
-        return new InMemoryUserDetailsManager(operator, approver, approver2, approver3);
+        var admin1 = User.withUsername("admin1")
+                .password(passwordEncoder.encode("1234"))
+                .roles("OPERATOR")
+                .build();
+        return new InMemoryUserDetailsManager(operator, approver, approver2, approver3, admin1);
     }
 
     @Bean

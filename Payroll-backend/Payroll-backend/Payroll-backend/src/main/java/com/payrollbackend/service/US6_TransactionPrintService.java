@@ -138,9 +138,9 @@ public class US6_TransactionPrintService {
 
     // Helper: Get bank name based on currency
     private String getBankNameForCurrency(String currency) {
-        if ("INR".equalsIgnoreCase(currency)) return "Standard Chartered Bank";
-        if ("USD".equalsIgnoreCase(currency)) return "Standard Chartered Bank (NY)";
-        if ("EUR".equalsIgnoreCase(currency)) return "Standard Chartered Bank (Frankfurt)";
-        return "Standard Chartered Bank";
+        if ("INR".equalsIgnoreCase(currency)) return "Corporate Bank";
+        if ("USD".equalsIgnoreCase(currency)) return "Corporate Bank (NY)";
+        if ("EUR".equalsIgnoreCase(currency)) return "Corporate Bank (Frankfurt)";
+        return "Corporate Bank";
     }
 }

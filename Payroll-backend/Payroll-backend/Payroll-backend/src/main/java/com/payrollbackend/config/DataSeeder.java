@@ -18,7 +18,7 @@ public class DataSeeder {
             if (US7AccountRepository.count() == 0) {
                 Account inr = new Account();
                 inr.setName("INR Account");
-                inr.setBank("Standard Chartered INR Operating A/C");
+                inr.setBank("Corporate INR Operating Account");
                 inr.setNumber("500012345678");
                 inr.setCurrency("INR");
                 inr.setDescription("Used for salary payouts and regular payroll batches.");
@@ -27,7 +27,7 @@ public class DataSeeder {
 
                 Account usd = new Account();
                 usd.setName("USD Account");
-                usd.setBank("Standard Chartered USD Nostro");
+                usd.setBank("Corporate USD Nostro Account");
                 usd.setNumber("8881234567");
                 usd.setCurrency("USD");
                 usd.setDescription("Used for payroll in US Dollars. SWIFT-enabled.");
@@ -36,7 +36,7 @@ public class DataSeeder {
 
                 Account eur = new Account();
                 eur.setName("EUR Account");
-                eur.setBank("Standard Chartered EUR Treasury");
+                eur.setBank("Corporate EUR Treasury Account");
                 eur.setNumber("300098765432");
                 eur.setCurrency("EUR");
                 eur.setDescription("For euro-denominated payroll. SEPA supported.");
