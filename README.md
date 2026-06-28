@@ -8,6 +8,8 @@ A full-stack web application for managing payroll operations, including batch cr
 
 <img width="1918" height="967" alt="image" src="https://github.com/user-attachments/assets/2ee66ca4-b118-4fd8-8a51-7d1caf163c24" />
 
+<img width="1918" height="1007" alt="image" src="https://github.com/user-attachments/assets/28c8d8b8-6be3-448b-8f5e-7cd6ca13f845" />
+
 
 
 ## 📋 Project Overview
