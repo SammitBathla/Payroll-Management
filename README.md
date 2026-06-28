@@ -2,6 +2,14 @@
 
 A full-stack web application for managing payroll operations, including batch creation, approval workflows, and transaction management.
 
+<img width="1918" height="1013" alt="image" src="https://github.com/user-attachments/assets/d1f542f4-7af6-4a90-878d-873aaa3ddda3" />
+
+<img width="1918" height="970" alt="image" src="https://github.com/user-attachments/assets/41760781-6c92-489b-8b12-15d7ce386008" />
+
+<img width="1918" height="967" alt="image" src="https://github.com/user-attachments/assets/2ee66ca4-b118-4fd8-8a51-7d1caf163c24" />
+
+
+
 ## 📋 Project Overview
 
 This project is a comprehensive payroll management system with the following features:
